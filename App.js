@@ -24,24 +24,44 @@ const App = () => {
   const photos = [{ id: 1, user: 'João' }, { id: 2, user: 'Maria' }, { id: 3, user: 'José' }];
 
   return (
-    <FlatList style={{marginTop: 20}}
-    data={fotos}
+    <FlatList style={styles.container}
+    data={photos}
     keyExtractor={item => item.id}
-    renderItem={ ({item}) => 
-      <View>
-        <Image source={require('./resources/img/logo.png')} 
-            style={{width:40, height:40}} />
-        <Text>{item.usuario}</Text>
-        <Image source={require('./resources/img/logo.png')} 
-            style={{width:width, height:width}} />
-      </View>
-    }
-  />
+      renderItem={({ item }) =>
+        <View>
+          <View style={styles.header}>
+            <Image source={require('./resources/img/logo.png')}
+              style={styles.user_profile} />
+            <Text>{item.user}</Text>
+          </View>
+          <Image source={require('./resources/img/logo.png')}
+            style={styles.post} />
+        </View>
+      }
+    />
   );
 };
 
 const styles = StyleSheet.create({
-  
+  container: {
+    marginTop: 20,
+  },
+  header: {
+    margin: 10,
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  user_profile: {
+    marginRight: 10,
+    borderRadius: 20,
+    width: 40,
+    height: 40
+  },
+  post: {
+     width: width,
+     height: width
+  }
+
 });
 
 export default App;
