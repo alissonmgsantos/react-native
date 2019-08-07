@@ -1,11 +1,3 @@
-/**./app
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -24,10 +16,10 @@ class Post extends Component {
       return (
         <View>
           <View style={styles.header}>
-            <Image source={require('../../resources/img/logo.png')} style={styles.user_profile} />
-            <Text>{this.props.photo.user}</Text>
+            <Image source={{ uri: this.props.user.avatar }} style={styles.user_profile} />
+            <Text>{ this.props.user.first_name } { this.props.user.last_name }</Text>
           </View>
-          <Image source={require('../../resources/img/logo.png')} style={styles.post} />
+          <Image source={{ uri: this.props.user.avatar }} style={styles.post} />
         </View>
       );
     }

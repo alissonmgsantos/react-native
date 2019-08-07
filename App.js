@@ -16,20 +16,31 @@ import {
   FlatList,
   Dimensions
 } from 'react-native';
-import Post from './app/components/post';
+import User from './app/components/user';
 
 const width = Dimensions.get('screen').width;
 
-const photos = [{ id: 1, user: 'João' }, { id: 2, user: 'Maria' }, { id: 3, user: 'José' }];
 
 class App extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      users: []
+    }
+  }
+
+  componentDidMount() {
+    fetch('https://reqres.in/api/users')
+        .then(reseponse => reseponse.json())
+        .then(json => this.setState({ users: json }));
+  }
+
   render() {
     return (
-      <FlatList style={styles.container}
-      data={photos}
-      keyExtractor={item => item.id}
-        renderItem={({ item }) =>
-        <Post photo={ item }></Post>
+      <FlatList style={styles.container} data={this.state.users.data} keyExtractor={item => item.id} 
+      renderItem={({ item }) =>
+        <User user={ item }></User>
         }
       />
     );
