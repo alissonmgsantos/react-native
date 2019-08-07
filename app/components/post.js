@@ -1,4 +1,4 @@
-/**
+/**./app
  * Sample React Native App
  * https://github.com/facebook/react-native
  *
@@ -16,31 +16,24 @@ import {
   FlatList,
   Dimensions
 } from 'react-native';
-import Post from './app/components/post';
 
 const width = Dimensions.get('screen').width;
 
-const photos = [{ id: 1, user: 'João' }, { id: 2, user: 'Maria' }, { id: 3, user: 'José' }];
-
-class App extends Component {
-  render() {
-    return (
-      <FlatList style={styles.container}
-      data={photos}
-      keyExtractor={item => item.id}
-        renderItem={({ item }) =>
-        <Post photo={ item }></Post>
-        }
-      />
-    );
+class Post extends Component {
+    render() {
+      return (
+        <View>
+          <View style={styles.header}>
+            <Image source={require('../../resources/img/logo.png')} style={styles.user_profile} />
+            <Text>{this.props.photo.user}</Text>
+          </View>
+          <Image source={require('../../resources/img/logo.png')} style={styles.post} />
+        </View>
+      );
+    }
   }
-}
-
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 20,
-  },
   header: {
     margin: 10,
     flexDirection: 'row',
@@ -59,4 +52,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default App;
+export default Post;
